@@ -1,0 +1,19 @@
+apiVersion: workspace.devfile.io/v1alpha2
+kind: DevWorkspace
+metadata:
+  name: nodejs-devworkspace
+spec:
+  template:
+    components:
+      - name: tools
+        container:
+          image: registry.redhat.io/devspaces/udi-rhel8:latest
+          command: ["/bin/sh"]
+          args: ["-c", "sleep infinity"]
+          volumeMounts:
+            - name: nodejs-source
+              path: /projects
+      - name: nodejs-source
+        volume: {}
+  routingClass: ''
+  started: true
