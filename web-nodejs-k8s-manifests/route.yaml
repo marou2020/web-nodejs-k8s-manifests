@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: web-nodejs-sample-route
+spec:
+  to:
+    kind: Service
+    name: web-nodejs-sample-service  # Nom du service auquel cette route est liée
+  port:
+    targetPort: 8080  # Le port de ton service que la route va cibler
+  tls:
+    termination: edge  # TLS pour sécuriser la connexion
+    insecureEdgeTerminationPolicy: Redirect
