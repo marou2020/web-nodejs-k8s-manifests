@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-nodejs-sample
+  labels:
+    app: web-nodejs-sample
+spec:
+  replicas: 1  # Nombre de réplicas à exécuter
+  selector:
+    matchLabels:
+      app: web-nodejs-sample
+  template:
+    metadata:
+      labels:
+        app: web-nodejs-sample
+    spec:
+      containers:
+        - name: web-nodejs-sample
+          image: image-registry.openshift-image-registry.svc:5000/che-kube-admin-devspaces-0o4ixc/web-nodejs-sample@sha256:1cf8088b58c406b19aaf4d6aa88030777ef61ea3dee36e9978c3c0ca1bde8b29  # Remplace par l'URL correcte de ton image Docker
+          ports:
+            - containerPort: 8080  # Port exposé par le conteneur
+          env:
+            - name: NODE_ENV
+              value: "production"
